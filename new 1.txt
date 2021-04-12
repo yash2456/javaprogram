@@ -1,0 +1,222 @@
+class testString_Immutaion 
+{
+ public static void main(String args[])
+ { 
+ String s=new String("Sachin"); 
+ System.out.println("before concat s is : "+s);
+ String s1=s.concat(" Tendulkar");
+ System.out.println("after concat s is : "+s); 
+ System.out.println("after concat s1 is : "+s1);
+ int a=21;
+ StringBuffer sb1=new StringBuffer("Hello ");
+ StringBuffer sb2=new StringBuffer("Welcome ");
+ System.out.println("before append sb2 is : "+sb2); 
+ sb2.append(sb1); 
+ String str= sb2.append(a+3).toString();
+ System.out.println("after append sb2 is : "+sb2);
+ System.out.println(sb2.deleteCharAt(13)); 
+ StringBuffer sb=new StringBuffer("Sachin");
+ System.out.println("before append sb is : "+sb);
+ sb.append(" Tendulkar");
+ System.out.println("after append sb is : "+sb);
+ } 
+ }
+ 
+ ********************************* new***********************
+class testString_Immutaion 
+{ 
+public static void main(String args[])
+ { 
+ String s=new String("Time says that The Sachin Tendulakar is The great cricketer"); 
+ System.out.println("index of first a is "+ s.indexOf("a")); 
+ System.out.println("index of a after 3rd char is "+s.indexOf("a",3));
+ System.out.println("index of The after 3rd char is "+s.indexOf("The",17));
+ }
+ }
+
+************************new***********************
+class testExceptionEx1
+ {
+ public static void main(String[] args)
+ { 
+ int a=21; int b=3; 
+ int c; try{ c=a/b;
+ // c=21/0 which is mathematically wrong 
+ System.out.println(c);
+ } 
+ catch(ArithmeticException e)
+ { System.out.println("you can not devide any value with zero"); 
+ } 
+ catch(IndexOutOfBoundsException e) 
+ { 
+ System.out.println("you can not devide any value with zero");
+ }
+ finally { System.out.println("finally block");
+ } 
+ System.out.println("after devsion addition perfomed");
+ c=a+b; 
+ System.out.println(c); 
+ }
+ }
+ 
+ *************************new***********************
+class testExceptionEx1
+ {
+ public static void main(String[] args)
+ { 
+ int a=21; 
+ int b=0;
+ int c;
+ if(b==0) 
+ { 
+ throw new ArithmeticException("b should not be3 zero"); 
+ }
+ else 
+ {
+ c=a/b; 
+ System.out.println("division "+a+" / "+b+" is: "+c);
+ }
+ System.out.println("after devsion addition perfomed"); 
+ System.out.println("after throw"); c=a+b; System.out.println(c);
+ } 
+ }
+ 
+ **********************new***********************
+import java.lang.*; 
+import java.io.*;
+ class TakeStringInput
+ {
+ public static void main(String[] args) 
+ //throws IOException 
+ {
+ BufferedReader br=new BufferedReader(new InputStreamReader(System.in)); 
+ try{
+ String str=br.readLine();
+ System.out.print(str); 
+ }
+ catch(IOException e)
+ {
+ System.out.print(e.toString());
+ } 
+ } 
+ }
+ 
+ *************new***********************
+class TestThread 
+{ 
+public void run() 
+{ 
+System.out.println("thread is running...");
+ }
+ public static void main(String args[])
+ { 
+ TestThread t1=new TestThread();
+ t1.start();
+ }
+ }
+ 
+ *******************new***********************
+class testThreadEx extends Thread//step 1 extends Thread class 
+{
+ public void run()//step 2 is overrride the run() of Thread class 
+ { 
+ try
+ {
+ for(int i=0;i<5;i++)
+ { 
+ System.out.println
+ ("running thread"+i);
+ Thread.sleep(3000);//suspand A thread for period of time(miliseconds)
+ }
+ } 
+ catch(InterruptedException e)
+ {
+ System.out.println(e); 
+ }
+ } 
+ public static void main(String[] args)
+ {
+ testThreadEx t1=new testThreadEx();//step 3 create object of class 
+ t1.start();// step 4 call start() of Thread class
+ }
+ }
+ 
+ ****************************new***********************
+//synchronized mrthod in mutual exclusive type
+ class BookTheaterSeats
+ { 
+ int total_seats=10;
+ synchronized void bookseats(int seats)//Synchronized method.
+ {
+ if(total_seats>=seats)
+ { 
+ System.out.println("seats booked successfully"); 
+ total_seats=total_seats-seats;
+ System.out.println("seats left are : "+total_seats);
+ }
+ else 
+ {
+ System.out.println("seats cannot be booked because "); 
+ System.out.println("only "+total_seats+" seats are available"); 
+ }
+ } 
+ } 
+ class MovieBookApplication extends Thread
+ {
+ static BookTheaterSeats b; 
+ int seats;
+ public void run() 
+ { 
+ b.bookseats(seats); 
+ }
+ public static void main(String[] args) 
+ { 
+ b= new BookTheaterSeats();
+ MovieBookApplication Krupali=new MovieBookApplication();
+ Krupali.seats=4;
+ Krupali.start(); 
+ MovieBookApplication Mitali=new MovieBookApplication(); 
+ Mitali.seats=4; 
+ Mitali.start();
+ MovieBookApplication Mita=new MovieBookApplication(); 
+ Mita.seats=4;
+ Mita.start(); 
+ } 
+ }
+ 
+ *******************new***********************
+//Theory Question: Write a program that accept a number('BBA','BCA','BCOM','BSC') from command line and display
+ //individual digits on the interval of 10 seconds(10000ms). 
+ class test extends Thread 
+ {
+ int[] arr; 
+ public void run() 
+ { 
+ try
+ { 
+ for(int count=0;count<arr.length;count++) 
+ {
+ System.out.println(arr[count]);
+ Thread.sleep(10000);//10000 
+ } 
+ } 
+ catch(InterruptedException e) 
+ { 
+ System.out.println(e); 
+ } 
+ } 
+ } 
+ class March2019
+ {
+ public static void main(String[] args)
+ { 
+ test t=new test(); 
+ t.start();
+ int arrsize=args.length;
+ t.arr=new int[arrsize]; 
+ for(int x=0;x<args.length;x++) 
+ {
+ t.arr[x]=Integer.parseInt(args[x]); 
+ }
+ } 
+ }
